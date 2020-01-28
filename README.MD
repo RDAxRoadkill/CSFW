@@ -2,8 +2,9 @@
 
 Webmanagement, keeping track of clients, products & services.
 
+## CSFW-Client
+Client-Side of CSFW application
+Server-Side found here: https://github.com/RDAxRoadkill/CSFW-Server/
 ## Update
-
-server: `git subtree push --prefix server heroku-server master`
 
 client: `git subtree push --prefix client heroku-client master`
