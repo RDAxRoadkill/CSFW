@@ -16,6 +16,10 @@ import { SpecCreateComponent } from './spec/spec-create/spec-create.component';
 import { SpecListComponent } from './spec/spec-list/spec-list.component';
 import { SpecEditComponent } from './spec/spec-edit/spec-edit.component';
 import { SpecDeleteComponent } from './spec/spec-delete/spec-delete.component';
+//Subscription components
+import { SubscriptionCreateComponent } from './subscription/subscription-create/subscription-create.component';
+import { SubscriptionEditComponent } from './subscription/subscription-edit/subscription-edit.component';
+import { SubscriptionListComponent } from './subscription/subscription-list/subscription-list.component';
 //Helpers
 import { Guard } from './_helpers/guard';
 
@@ -25,14 +29,20 @@ const routes: Routes = [
   { path: 'about', component: UsecasesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  //Hardware routes
   { path: 'list-hardware', component: HardwareListComponent},
   { path: 'create-hardware', component: HardwareCreateComponent, canActivate: [Guard] },
   { path: 'edit-hardware/:id', component: HardwareEditComponent, canActivate: [Guard] },
   { path: 'delete-hardware', component: HardwareDeleteComponent, canActivate: [Guard] },
+  //Spec routes
  // { path: 'list-spec', component: SpecListComponent},
   { path: 'create-spec', component: SpecCreateComponent, canActivate: [Guard] },
   { path: 'edit-spec/:id', component: SpecEditComponent, canActivate: [Guard] },
   { path: 'delete-spec', component: SpecDeleteComponent, canActivate: [Guard] },
+  //Subscription routes
+  { path: 'list-subscription', component: SubscriptionListComponent},
+  { path: 'create-subscription', component: SubscriptionCreateComponent, canActivate: [Guard] },
+  { path: 'edit-subscription/:id', component: SubscriptionEditComponent, canActivate: [Guard] },
   { path: '**', redirectTo: '/' }
 ];
 
