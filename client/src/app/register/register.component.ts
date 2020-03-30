@@ -20,8 +20,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
-          username: ['', Validators.required],
-          password: ['', Validators.required]
+          Username: ['', Validators.required],
+          Password: ['', Validators.required]
       });
 
       // get return url from route parameters or default to '/'

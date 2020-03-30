@@ -29,7 +29,9 @@ import { SpecCreateComponent } from './spec/spec-create/spec-create.component';
 import { SpecEditComponent } from './spec/spec-edit/spec-edit.component';
 import { SubscriptionCreateComponent } from './subscription/subscription-create/subscription-create.component';
 import { SubscriptionEditComponent } from './subscription/subscription-edit/subscription-edit.component';
-import { SubscriptionListComponent } from './subscription/subscription-list/subscription-list.component'
+import { SubscriptionListComponent } from './subscription/subscription-list/subscription-list.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component'
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { SubscriptionListComponent } from './subscription/subscription-list/subs
     SpecEditComponent,
     SubscriptionCreateComponent,
     SubscriptionEditComponent,
-    SubscriptionListComponent
+    SubscriptionListComponent,
+    UserListComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
