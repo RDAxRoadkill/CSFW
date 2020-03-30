@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SpecService } from '../../service/spec.service';
 
 @Component({
   selector: 'app-spec-list',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpecListComponent implements OnInit {
 
-  constructor() { }
+  Specification: any = [];
+
+  constructor(private specService: SpecService) { 
+    this.getSpecs();
+  }
 
   ngOnInit() {
+  }
+
+  getSpecs() {
+    this.specService.getSpecs().subscribe((data) => {
+      this.Specification = data;
+    })
+  }
+
+  removeSpec(spec, index){
+    if(window.confirm('Are you sure?')) {
+      this.specService.deleteSpec(spec._id).subscribe((data) => {
+        window.location.reload();
+      }
+    )    
+  }
   }
 
 }

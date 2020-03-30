@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HardwareDeleteComponent } from './hardware-delete.component';
+import { SubscriptionEditComponent } from './subscription-edit.component';
 
-describe('HardwareDeleteComponent', () => {
-  let component: HardwareDeleteComponent;
-  let fixture: ComponentFixture<HardwareDeleteComponent>;
+describe('SubscriptionEditComponent', () => {
+  let component: SubscriptionEditComponent;
+  let fixture: ComponentFixture<SubscriptionEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HardwareDeleteComponent ]
+      declarations: [ SubscriptionEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HardwareDeleteComponent);
+    fixture = TestBed.createComponent(SubscriptionEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

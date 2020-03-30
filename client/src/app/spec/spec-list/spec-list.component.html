@@ -1,1 +1,31 @@
-<p>spec-list works!</p>
+<div class="container">
+    <!-- No data message -->
+    <p *ngIf="Specification.length <= 0" class="no-data text-center">There are no specifications yet!</p>
+  
+    <table class="table table-bordered" *ngIf="Specification.length > 0">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Type</th>
+          <th scope="col">Amount</th>
+          <th scope="col">AmountType</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let spec of Specification; let i = index">
+          <td>{{spec.Name}}</td>
+          <td>{{spec.Type}}</td>
+          <td>{{spec.Amount}}</td>
+          <td>{{spec.AmountType}}</td>
+          <td class="text-center edit-block">
+            <span class="edit" [routerLink]="['/edit-spec/', spec._id]">
+              <button type="button" class="btn btn-success btn-sm">Edit</button>
+            </span>
+            <span class="delete" (click)="removeSpec(spec, i)">
+              <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

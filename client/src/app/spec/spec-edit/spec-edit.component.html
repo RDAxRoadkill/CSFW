@@ -1,1 +1,58 @@
-<p>spec-edit works!</p>
+<div class="row justify-content-center">
+    <div class="col-md-4 register-specifications">
+      <!-- form card register -->
+      <div class="card card-outline-secondary">
+        <div class="card-header">
+          <h3 class="mb-0">Edit specification</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="editSpecForm" (ngSubmit)="onSubmit()">
+ 
+            <div class="form-group">
+              <label for="Name">Name</label>
+              <input class="form-control" type="text" formControlName="Name">
+              <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.required">
+                Name is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Type">Type</label>
+              <input class="form-control" type="text" formControlName="Type">
+              <div class="invalid-feedback" *ngIf="submitted && myForm.Type.errors?.required">
+                Enter the Type
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && myForm.Type.errors?.pattern">
+                Enter Type only
+              </div>
+            </div>
+ 
+            <div class="form-group">
+              <label for="Support">Amount</label>
+              <input class="form-control" type="text" formControlName="Amount">
+              <div class="invalid-feedback" *ngIf="submitted && myForm.Amount.errors?.required">
+                Enter current number of Amount
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && myForm.Amount.errors?.pattern">
+                Enter Amount Only
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Support">AmountType</label>
+                <input class="form-control" type="text" formControlName="AmountType">
+                <div class="invalid-feedback" *ngIf="submitted && myForm.AmountType.errors?.required">
+                  Enter current number of AmountType
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && myForm.AmountType.errors?.pattern">
+                  Enter AmountType Only
+                </div>
+              </div>
+ 
+            <div class="form-group">
+              <button class="btn btn-success btn-lg btn-block" type="submit">Update</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- form  -->
+    </div>
+  </div>

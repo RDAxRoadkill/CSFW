@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 //Services
 import { HardwareApiService } from './service/hardware-api.service';
+import { SpecService } from './service/spec.service';
+import { SubscriptionService } from './service/subscription.service';
 
 //Helpers
 import { Interceptor } from './_helpers/interceptor';
@@ -21,12 +23,13 @@ import { HardwareCreateComponent } from './hardware/hardware-create/hardware-cre
 import { HardwareListComponent } from './hardware/hardware-list/hardware-list.component';
 import { LoginComponent } from './login/login.component';
 import { HardwareEditComponent } from './hardware/hardware-edit/hardware-edit.component';
-import { HardwareDeleteComponent } from './hardware/hardware-delete/hardware-delete.component';
 import { RegisterComponent } from './register/register.component';
 import { SpecListComponent } from './spec/spec-list/spec-list.component';
 import { SpecCreateComponent } from './spec/spec-create/spec-create.component';
 import { SpecEditComponent } from './spec/spec-edit/spec-edit.component';
-import { SpecDeleteComponent } from './spec/spec-delete/spec-delete.component'
+import { SubscriptionCreateComponent } from './subscription/subscription-create/subscription-create.component';
+import { SubscriptionEditComponent } from './subscription/subscription-edit/subscription-edit.component';
+import { SubscriptionListComponent } from './subscription/subscription-list/subscription-list.component'
 
 @NgModule({
   declarations: [
@@ -37,12 +40,13 @@ import { SpecDeleteComponent } from './spec/spec-delete/spec-delete.component'
     HardwareListComponent,
     LoginComponent,
     HardwareEditComponent,
-    HardwareDeleteComponent,
     RegisterComponent,
     SpecListComponent,
     SpecCreateComponent,
     SpecEditComponent,
-    SpecDeleteComponent
+    SubscriptionCreateComponent,
+    SubscriptionEditComponent,
+    SubscriptionListComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,9 @@ import { SpecDeleteComponent } from './spec/spec-delete/spec-delete.component'
   ],
   providers: [
    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
-    HardwareApiService
+    HardwareApiService,
+    SpecService,
+    SubscriptionService
   ],
   bootstrap: [AppComponent]
 })
