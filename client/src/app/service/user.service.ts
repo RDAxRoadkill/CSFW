@@ -24,7 +24,6 @@ export class UserService {
 
   //Get one
   getUser(id): Observable<any> {
-    console.log("Get user called");
     let url = `${this.baseUri}/${id}`;
     return this.http.get(url, {headers: this.headers}).pipe(
       map((res: Response) => {
@@ -35,7 +34,6 @@ export class UserService {
   }
   //Update
   updateUser(id, data): Observable<any> {
-    console.log("Updoot user called")
     const url = `${this.baseUri}/${id}`;
     return this.http.put(url, data, { headers: this.headers }).pipe(
       catchError(this.errorMgmt)

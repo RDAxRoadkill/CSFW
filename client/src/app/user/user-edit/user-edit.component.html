@@ -1,1 +1,48 @@
 <p>user-edit works!</p>
+<div class="row justify-content-center">
+    <div class="col-md-4 edit-user">
+      <!-- form card register -->
+      <div class="card card-outline-secondary">
+        <div class="card-header">
+          <h3 class="mb-0">Edit user</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
+ 
+            <div class="form-group">
+              <label for="Username">Username</label>
+              <input class="form-control" type="text" formControlName="Username">
+              <div class="invalid-feedback" *ngIf="submitted && userEditForm.Username.errors?.required">
+                Username is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Firstname">Firstname</label>
+              <input class="form-control" type="text" formControlName="Firstname">
+              <div class="invalid-feedback" *ngIf="submitted && userEditForm.Firstname.errors?.required">
+                Enter a firstname
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && userEditForm.Firstname.errors?.pattern">
+                Enter letters only
+              </div>
+            </div>
+ 
+            <div class="form-group">
+              <label for="Lastname">Lastname</label>
+              <input class="form-control" type="text" formControlName="Lastname">
+              <div class="invalid-feedback" *ngIf="submitted && userEditForm.Lastname.errors?.required">
+                Enter a Lastname
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && userEditForm.Lastname.errors?.pattern">
+                Enter letters Only
+              </div>
+            </div>
+ 
+            <div class="form-group">
+              <button class="btn btn-success btn-lg btn-block" type="submit">Update</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- form  -->
+    </div>
+  </div>

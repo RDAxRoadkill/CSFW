@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: 'edit-subscription/:id', component: SubscriptionEditComponent, canActivate: [Guard] },
   //User routes
   { path: 'list-user', component: UserListComponent},
-  { path: 'edit-user', component: UserEditComponent, canActivate: [Guard]}, //TODO: Upgrade to only allow specific user to edit their details
+  { path: 'edit-user/:id', component: UserEditComponent, canActivate: [Guard]}, //TODO: Upgrade to only allow specific user to edit their details
   //CatchAll
   { path: '**', redirectTo: '/' }
 ];
