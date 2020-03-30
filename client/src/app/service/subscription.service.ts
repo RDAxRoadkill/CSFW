@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 
 export class SubscriptionService {
 
-  baseUri:string = environment.serverurl + "/api/subscription";
+  baseUri:string = environment.serverurl + "/api/subscriptions";
   headers = new HttpHeaders().set('Content-type', 'application/json');
   constructor(private http: HttpClient) { }
 
