@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'edit-hardware/:id', component: HardwareEditComponent, canActivate: [Guard] },
   { path: 'delete-hardware', component: HardwareDeleteComponent, canActivate: [Guard] },
   //Spec routes
- // { path: 'list-spec', component: SpecListComponent},
+  { path: 'list-spec', component: SpecListComponent},
   { path: 'create-spec', component: SpecCreateComponent, canActivate: [Guard] },
   { path: 'edit-spec/:id', component: SpecEditComponent, canActivate: [Guard] },
   { path: 'delete-spec', component: SpecDeleteComponent, canActivate: [Guard] },
