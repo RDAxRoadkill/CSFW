@@ -39,7 +39,6 @@ export class UserEditComponent implements OnInit {
 
   getUser(id) {
     this.userService.getUser(id).subscribe(data =>{
-      console.log(data)
       this.userEditForm.setValue({
         Username: data['Username'],
         Firstname: data['Firstname'],
@@ -68,7 +67,7 @@ export class UserEditComponent implements OnInit {
         let id = this.actRoute.snapshot.paramMap.get('id');
         this.userService.updateUser(id, this.userEditForm.value)
           .subscribe(res => {
-            this.router.navigateByUrl('/list-hardware');
+            this.router.navigateByUrl('/list-user');
             console.log('Content updated successfully!')
           }, (error) => {
             console.log(error)
