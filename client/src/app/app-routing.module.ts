@@ -18,6 +18,9 @@ import { SpecEditComponent } from './spec/spec-edit/spec-edit.component';
 import { SubscriptionCreateComponent } from './subscription/subscription-create/subscription-create.component';
 import { SubscriptionEditComponent } from './subscription/subscription-edit/subscription-edit.component';
 import { SubscriptionListComponent } from './subscription/subscription-list/subscription-list.component';
+//User components
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
 //Helpers
 import { Guard } from './_helpers/guard';
 
@@ -39,6 +42,10 @@ const routes: Routes = [
   { path: 'list-subscription', component: SubscriptionListComponent},
   { path: 'create-subscription', component: SubscriptionCreateComponent, canActivate: [Guard] },
   { path: 'edit-subscription/:id', component: SubscriptionEditComponent, canActivate: [Guard] },
+  //User routes
+  { path: 'list-user', component: UserListComponent},
+  { path: 'edit-user', component: UserEditComponent, canActivate: [Guard]}, //TODO: Upgrade to only allow specific user to edit their details
+  //CatchAll
   { path: '**', redirectTo: '/' }
 ];
 
