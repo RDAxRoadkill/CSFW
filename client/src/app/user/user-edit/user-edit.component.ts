@@ -26,8 +26,9 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.updateUser();
     let id = this.actRoute.snapshot.paramMap.get('id');
-    console.log(this.authenticationService.currentUserValue.id);
+    //User is only allowed to edit it's own data
     if(id != this.authenticationService.currentUserValue.id.toString()){
+      //Send user back to list, TODO: set alert
       console.log("Can't edit");
       this.router.navigateByUrl('/list-user');
     } else{

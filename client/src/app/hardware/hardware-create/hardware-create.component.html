@@ -1,10 +1,24 @@
+<style>
+  .invalid-feedback {
+    display: block !important;
+  }
+</style>
 <div class="row justify-content-center">
     <div class="col-md-4 register-hardware">
         <form [formGroup]="hardwareForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-                <label for="inputName">Name</label>
+                <label for="Name">Name</label>
                 <input class="form-control" type="text" formControlName="Name">
                 <!-- error -->
+                <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.required">
+                  Name is required
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.patterns">
+                  Enter letters only
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.minlength">
+                  <sup>*</sup>Name must be 2 characters long
+                </div>
             </div>
             <div class="form-group">
                 <label for="Capacity">Client Capacity</label>
