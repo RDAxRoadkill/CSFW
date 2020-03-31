@@ -21,7 +21,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
           Username: ['', Validators.required],
-          Password: ['', Validators.required]
+          Password: ['', Validators.required],
+          Firstname: ['', Validators.required],
+          Lastname: ['', Validators.required]
       });
 
       // get return url from route parameters or default to '/'
@@ -38,6 +40,7 @@ export class RegisterComponent implements OnInit {
     this.registerService.createUser(this.registerForm.value).subscribe(
       (res) => {
         console.log("User created");
+        this.router.navigateByUrl('/list-user');
       }, (error) => {
         console.log(error);
       }
