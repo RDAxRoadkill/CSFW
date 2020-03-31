@@ -11,6 +11,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 export class HardwareCreateComponent implements OnInit {
   submitted = false;
   hardwareForm: FormGroup;
+
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -24,9 +25,9 @@ export class HardwareCreateComponent implements OnInit {
 
   mainForm() {
     this.hardwareForm = this.fb.group({
-      Name: ['', [Validators.required]],
-      ClientCapacity: [],
-      ClientsSupported: []
+      Name: ['', [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z]+$')]],
+      ClientCapacity: ['', [Validators.required]],
+      ClientsSupported: ['', [Validators.required]]
     })
   }
 
@@ -38,14 +39,19 @@ export class HardwareCreateComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
     //Validate variables etc
-    this.HardwareApiService.createHardware(this.hardwareForm.value).subscribe(
-      (res) => {
-        console.log("Hardware created");
-        this.router.navigateByUrl('/list-hardware');
-      }, (error) => {
-        console.log(error);
-      }
-    )
+    if(!this.hardwareForm.valid) {
+      console.log("Make sure all is valid");
+      return false;
+    } else {
+      this.HardwareApiService.createHardware(this.hardwareForm.value).subscribe(
+        (res) => {
+          console.log("Hardware created");
+          this.router.navigateByUrl('/list-hardware');
+        }, (error) => {
+          console.log(error);
+        }
+      )
+    }
   }
 
 }

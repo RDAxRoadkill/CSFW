@@ -1,31 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { SubscriptionService } from '../../service/subscription.service';
+import { Subscription } from '../../model/subscription';
 
 @Component({
   selector: 'app-subscription-list',
   templateUrl: './subscription-list.component.html',
   styleUrls: ['./subscription-list.component.css']
 })
-export class SubscriptionListComponent implements OnInit {
+export class SubscriptionListComponent {
 
-  Subscription: any = [];
+  Subscription: Subscription;
 
   constructor(private subscriptionService: SubscriptionService) { 
     this.readSubscription();
   }
 
-  ngOnInit() {
-  }
-
   readSubscription(){
-    this.subscriptionService.getSubscriptions().subscribe((data) => {
+    this.subscriptionService.getSubscriptions().subscribe((data:Subscription) => {
       this.Subscription = data;
     })
   }
 
   removeSubscription(subscription, index){
     if(window.confirm('Are you sure?')) {
-      this.subscriptionService.deleteSubscription(subscription._id).subscribe((data) => {
+      this.subscriptionService.deleteSubscription(subscription._id).subscribe((data:Subscription) => {
         window.location.reload();
       }
       )    

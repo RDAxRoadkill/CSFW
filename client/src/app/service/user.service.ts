@@ -27,6 +27,8 @@ export class UserService {
     let url = `${this.baseUri}/${id}`;
     return this.http.get(url, {headers: this.headers}).pipe(
       map((res: Response) => {
+        console.log(res);
+        console.log(res.json)
         return res || {}
       }),
       catchError(this.errorMgmt)

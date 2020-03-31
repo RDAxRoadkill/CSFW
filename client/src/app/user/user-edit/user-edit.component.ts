@@ -3,6 +3,7 @@ import { User } from '../../model/user';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators  } from "@angular/forms";
 import { UserService } from '../../service/user.service';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -18,18 +19,27 @@ export class UserEditComponent implements OnInit {
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private userService: UserService,
+    private authenticationService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.updateUser();
     let id = this.actRoute.snapshot.paramMap.get('id');
-    this.getUser(id);
-    this.userEditForm = this.fb.group({
-      Username: ['', [Validators.required]],
-      Firstname: [''],
-      Lastname: ['']
-    })
+    //User is only allowed to edit it's own data
+    if(id != this.authenticationService.currentUserValue.id.toString()){
+      //Send user back to list, TODO: set alert
+      console.log("Can't edit");
+      this.router.navigateByUrl('/list-user');
+    } else{
+      console.log("Can edit");
+      this.getUser(id);
+      this.userEditForm = this.fb.group({
+        Username: ['', [Validators.required]],
+        Firstname: [''],
+        Lastname: ['']
+      })
+    }
   }
 
   // Getter to access form control

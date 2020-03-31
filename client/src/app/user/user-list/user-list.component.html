@@ -16,9 +16,10 @@
           <td>{{usr.Firstname}}</td>
           <td>{{usr.Lastname}}</td>
           <td class="text-center edit-block">
-            <span class="edit" [routerLink]="['/edit-user/', usr._id]">
-              <button type="button" class="btn btn-success btn-sm">Edit</button>
-            </span>
+              <span class="edit" [routerLink]="['/edit-user/', usr._id]">
+                <button type="button" class="btn btn-success btn-sm">Edit</button>
+              </span>
+
             <!-- <span class="delete" (click)="removeUsr(usr, i)">
               <button type="button" class="btn btn-danger btn-sm">Delete</button>
             </span> -->

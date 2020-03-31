@@ -24,7 +24,7 @@ export class HardwareEditComponent implements OnInit {
   ngOnInit() {
     this.updateHardware();
     let id = this.actRoute.snapshot.paramMap.get('id');
-    //this.getHardware(id);
+    this.getHardware(id);
     this.editForm = this.fb.group({
       Name: ['', [Validators.required]],
       ClientCapacity: [''],
@@ -35,7 +35,7 @@ export class HardwareEditComponent implements OnInit {
   get myForm(){
     return this.editForm.controls;
   }
-/*
+
   getHardware(id) {
     this.hardwareApiService.getHardware(id).subscribe(data => {
       console.log(data)
@@ -46,7 +46,6 @@ export class HardwareEditComponent implements OnInit {
       });
     });
   }
-  */
 
   updateHardware() {
     this.editForm = this.fb.group({
