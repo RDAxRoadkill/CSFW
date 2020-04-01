@@ -19,16 +19,14 @@ export class SubscriptionEditComponent implements OnInit {
     private actRoute: ActivatedRoute,
     private subscriptionService: SubscriptionService,
     private router: Router
-  ) { }
+  ) { 
+    this.updateSubscription();
+  }
 
   ngOnInit() {
     this.updateSubscription();
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getSubscription(id);
-    this.editSubForm = this.fb.group({
-      Name: ['', [Validators.required]],
-      Costs: [''],
-    })
   }
 
   // Getter to access form control
@@ -48,18 +46,21 @@ export class SubscriptionEditComponent implements OnInit {
 
   updateSubscription(){
     this.editSubForm = this.fb.group({
-      Name: ['', [Validators.required]],
-      Costs: ['']
+      Name: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z]+$')
+      ]],
+      Costs: ['', [
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
+      ]]
     })
   }
 
   onSubmit() {
-    console.log("Submitted")
     this.submitted = true;
     if (!this.editSubForm.valid) {
       return false;
-      //TODO: Send back feedback on false data
-      window.location.reload();
     } else {
       if (window.confirm('Are you sure?')) {
         let id = this.actRoute.snapshot.paramMap.get('id');

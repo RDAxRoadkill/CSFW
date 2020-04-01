@@ -24,8 +24,14 @@ export class SubscriptionCreateComponent implements OnInit {
 
   mainForm(){
     this.subscriptionForm = this.fb.group({
-      Name: ['', [Validators.required]],
-      Costs: []
+      Name: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z]+$')
+      ]],
+      Costs: ['', [
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
+      ]]
     })
   }
 
@@ -37,14 +43,18 @@ export class SubscriptionCreateComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
     //Validate variables etc
-    this.SubscriptionService.createSubscription(this.subscriptionForm.value).subscribe(
-      (res) => {
-        console.log("Subscription created by form");
-        this.router.navigateByUrl('/list-subscription');
-      }, (error) => {
-        console.log(error);
-      }
-    )
+    if (!this.subscriptionForm.valid) {
+      return false;
+    } else {
+      this.SubscriptionService.createSubscription(this.subscriptionForm.value).subscribe(
+        (res) => {
+          console.log("Subscription created by form");
+          this.router.navigateByUrl('/list-subscription');
+        }, (error) => {
+          console.log(error);
+        }
+      )
+    }
   }
 
 }
