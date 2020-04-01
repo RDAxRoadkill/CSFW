@@ -19,19 +19,14 @@ export class SpecEditComponent implements OnInit {
     private actRoute: ActivatedRoute,
     private specService: SpecService,
     private router: Router
-  ) { }
+  ) { 
+    this.updateSpec();
+  }
 
   ngOnInit() {
     this.updateSpec();
     let id = this.actRoute.snapshot.paramMap.get('id');
-    console.log(id);
     this.getSpec(id);
-    this.editSpecForm = this.fb.group({
-      Name: ['', [Validators.required]],
-      Type: [''],
-      Amount: [''],
-      AmountType: ['']
-    })
   }
 
   get myForm(){
@@ -52,20 +47,28 @@ export class SpecEditComponent implements OnInit {
 
   updateSpec() {
     this.editSpecForm = this.fb.group({
-      Name: ['', [Validators.required]],
-      Type: [''],
-      Amount: [''],
-      AmountType: ['']
+      Name: ['', [
+        Validators.required, 
+        Validators.minLength(2),
+        Validators.pattern('^[a-zA-Z]+$')
+      ]],
+      Type: ['', [
+        Validators.required
+      ]],
+      Amount: ['', [
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
+      ]],
+      AmountType: ['', [
+        Validators.required
+      ]],
     })
   }
 
   onSubmit() {
-    console.log("Submitted")
     this.submitted = true;
     if (!this.editSpecForm.valid) {
       return false;
-      //TODO: Send back feedback on false data
-      window.location.reload();
     } else {
       if (window.confirm('Are you sure?')) {
         let id = this.actRoute.snapshot.paramMap.get('id');

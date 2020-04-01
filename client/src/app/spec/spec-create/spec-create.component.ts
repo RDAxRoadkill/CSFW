@@ -24,10 +24,21 @@ export class SpecCreateComponent implements OnInit {
 
   mainForm() {
     this.specForm = this.fb.group({
-      name: ['', [Validators.required]],
-      type: ['', [Validators.required]],
-      amount: ['', [Validators.required]],
-      amountType: ['', [Validators.required]],
+      name: ['', [
+        Validators.required, 
+        Validators.minLength(2),
+        Validators.pattern('^[a-zA-Z]+$')
+      ]],
+      type: ['', [
+        Validators.required
+      ]],
+      amount: ['', [
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
+      ]],
+      amountType: ['', [
+        Validators.required
+      ]],
     })
   }
 
@@ -39,13 +50,16 @@ export class SpecCreateComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
     //Validate variables etc
-    this.specApiService.createSpec(this.specForm.value).subscribe(
-      (res) => {
-        console.log("Spec created");
-      }, (error) => {
-        console.log(error);
-      }
-    )
+    if (!this.specForm.valid) {
+      return false;
+    } else {
+      this.specApiService.createSpec(this.specForm.value).subscribe(
+        (res) => {
+          console.log("Spec created");
+        }, (error) => {
+          console.log(error);
+        }
+      )
+    }
   }
-
 }
