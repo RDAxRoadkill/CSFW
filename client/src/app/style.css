@@ -1,0 +1,3 @@
+body .invalid-feedback {
+    display: block !important; /* Sccs makes these invisible. Required to use important unfortunatly */
+}

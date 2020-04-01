@@ -20,8 +20,14 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
-          Username: ['', Validators.required],
-          Password: ['', Validators.required],
+          Username: ['', [
+          Validators.required,
+          Validators.email
+          ]],
+          Password: ['', [
+            Validators.required,
+            Validators.minLength(3)
+          ]],
           Firstname: ['', Validators.required],
           Lastname: ['', Validators.required]
       });
@@ -36,15 +42,20 @@ export class RegisterComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
     //Validate variables etc
-    console.log(this.registerForm.value)
-    this.registerService.createUser(this.registerForm.value).subscribe(
-      (res) => {
-        console.log("User created");
-        this.router.navigateByUrl('/list-user');
-      }, (error) => {
-        console.log(error);
-      }
-    )
+    if(!this.registerForm.valid) {
+      console.log("Make sure all is valid");
+      return false;
+    } else {
+      console.log(this.registerForm.value)
+      this.registerService.createUser(this.registerForm.value).subscribe(
+        (res) => {
+          console.log("User created");
+          this.router.navigateByUrl('/list-user');
+        }, (error) => {
+          console.log(error);
+        }
+      )
+    }
   }
 
 }

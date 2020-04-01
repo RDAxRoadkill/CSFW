@@ -25,9 +25,19 @@ export class HardwareCreateComponent implements OnInit {
 
   mainForm() {
     this.hardwareForm = this.fb.group({
-      Name: ['', [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z]+$')]],
-      ClientCapacity: ['', [Validators.required]],
-      ClientsSupported: ['', [Validators.required]]
+      Name: ['', [
+        Validators.required, 
+        Validators.minLength(2),
+        Validators.pattern('^[a-zA-Z]+$')
+      ]],
+      ClientCapacity: ['', [
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
+      ]],
+      ClientsSupported: ['', [
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
+      ]]
     })
   }
 
@@ -40,7 +50,6 @@ export class HardwareCreateComponent implements OnInit {
     this.submitted = true;
     //Validate variables etc
     if(!this.hardwareForm.valid) {
-      console.log("Make sure all is valid");
       return false;
     } else {
       this.HardwareApiService.createHardware(this.hardwareForm.value).subscribe(

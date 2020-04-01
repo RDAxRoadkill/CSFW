@@ -1,8 +1,3 @@
-<style>
-  .invalid-feedback {
-    display: block !important;
-  }
-</style>
 <div class="row justify-content-center">
     <div class="col-md-4 register-hardware">
         <form [formGroup]="hardwareForm" (ngSubmit)="onSubmit()">
@@ -13,18 +8,18 @@
                 <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.required">
                   Name is required
                 </div>
-                <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.patterns">
+                <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.pattern">
                   Enter letters only
                 </div>
                 <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.minlength">
-                  <sup>*</sup>Name must be 2 characters long
+                  Name must be 2 characters long
                 </div>
             </div>
             <div class="form-group">
                 <label for="Capacity">Client Capacity</label>
                 <input class="form-control" type="text" formControlName="ClientCapacity">
                 <div class="invalid-feedback" *ngIf="submitted && myForm.ClientCapacity.errors?.required">
-                  Enter the client capacaity
+                  Please enter a client capacity
                 </div>
                 <div class="invalid-feedback" *ngIf="submitted && myForm.ClientCapacity.errors?.pattern">
                   Enter numbers only
@@ -35,7 +30,7 @@
                 <label for="Support">Clients Supported</label>
                 <input class="form-control" type="text" formControlName="ClientsSupported">
                 <div class="invalid-feedback" *ngIf="submitted && myForm.ClientsSupported.errors?.required">
-                  Enter current number of clients supported
+                  Please enter the current number of clients using the service
                 </div>
                 <div class="invalid-feedback" *ngIf="submitted && myForm.ClientsSupported.errors?.pattern">
                   Enter Numbers Only
