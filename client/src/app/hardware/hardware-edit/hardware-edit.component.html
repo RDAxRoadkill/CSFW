@@ -48,7 +48,15 @@
                 Enter Numbers Only
               </div>
             </div>
- 
+
+            <div class="form-group">
+              <label for="Support">Specifications</label>
+              <select formControlName="Specifications" id="Specifications" class="js-example-basic-multiple" name="Specifications[]" multiple="multiple" size="10">
+                <option *ngFor="let spec of Specifications; let i = index" [value]="spec._id">
+                  {{spec.Name}}
+                </option>
+              </select>
+            </div>
             <div class="form-group">
               <button class="btn btn-success btn-lg btn-block" type="submit">Update</button>
             </div>

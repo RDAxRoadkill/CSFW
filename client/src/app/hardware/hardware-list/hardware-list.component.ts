@@ -20,7 +20,9 @@ export class HardwareListComponent implements OnInit {
   readHardware() {
     this.hardwareApiService.getHardwares().subscribe((data) => {
       this.Hardware = data;
+      console.log(data);
     })
+    
   }
 
   removeHardware(hardware, index) {

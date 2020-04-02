@@ -42,6 +42,7 @@ export class HardwareApiService {
   //Update
   updateHardware(id, data): Observable<any> {
     console.log("Updoot hardware called")
+    console.log(data);
     const url = `${this.baseUri}/${id}`;
     return this.http.put(url, data, { headers: this.headers }).pipe(
       catchError(this.errorMgmt)

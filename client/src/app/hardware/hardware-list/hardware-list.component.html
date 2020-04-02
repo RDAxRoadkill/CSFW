@@ -8,6 +8,7 @@
           <th scope="col">Name</th>
           <th scope="col">Client Capacity (Max No. of clients)</th>
           <th scope="col">Current clients supported</th>
+          <th scope="col">Hardware specifications</th>
         </tr>
       </thead>
       <tbody>
@@ -15,6 +16,13 @@
           <td>{{hardware.Name}}</td>
           <td>{{hardware.ClientCapacity}}</td>
           <td>{{hardware.ClientsSupported}}</td>
+          <td>
+            <ul *ngFor="let spec of hardware.Specifications; let i = index">
+              <li>{{spec.Name}}</li>
+              <li>{{spec.Type}}</li>
+              <li>{{spec.Amount}} {{spec.AmountType}}</li>
+            </ul>
+          </td>
           <td class="text-center edit-block">
             <span class="edit" [routerLink]="['/edit-hardware/', hardware._id]">
               <button type="button" class="btn btn-success btn-sm">Edit</button>

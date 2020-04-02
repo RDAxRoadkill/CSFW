@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import * as jquery from 'jquery';
 
 import { AuthService } from './service/auth.service';
 import { User } from './model/user';
@@ -13,7 +14,7 @@ export class AppComponent {
   title = 'CSFW - Webmanagement';
 
   currentUser: User;
-
+  
   constructor(
       private router: Router,
       private authenticationService: AuthService

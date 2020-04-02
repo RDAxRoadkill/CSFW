@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators  } from "@angular/forms";
 import { HardwareApiService } from '../../service/hardware-api.service';
 
+import { SpecService } from '../../service/spec.service';
+import { of } from 'rxjs';
+
 @Component({
   selector: 'app-hardware-edit',
   templateUrl: './hardware-edit.component.html',
@@ -13,12 +16,14 @@ export class HardwareEditComponent implements OnInit {
   submitted = false;
   editForm: FormGroup;
   hardwareData: Hardware[];
+  Specifications: any = [];
 
   constructor(
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private hardwareApiService: HardwareApiService,
-    private router: Router
+    private router: Router,
+    private specService: SpecService
   ) {
     this.updateHardware();
    }
@@ -27,6 +32,7 @@ export class HardwareEditComponent implements OnInit {
     this.updateHardware();
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getHardware(id);
+    this.getSpec();
   }
   // Getter to access form control
   get myForm(){
@@ -39,8 +45,19 @@ export class HardwareEditComponent implements OnInit {
         Name: data['Name'],
         ClientCapacity: data['ClientCapacity'],
         ClientsSupported: data['ClientsSupported'],
+        Specifications: ['']
       });
     });
+
+    of(this.getSpec()).subscribe(Specifications => {
+      this.Specifications = Specifications
+    });
+  }
+
+  getSpec() {
+    this.specService.getSpecs().subscribe((data) => {
+      this.Specifications = data;
+    })
   }
 
   updateHardware() {
@@ -57,6 +74,9 @@ export class HardwareEditComponent implements OnInit {
       ClientsSupported: ['', [
         Validators.required,
         Validators.pattern("^[0-9]*$")
+      ]],
+      Specifications: ['', [
+        Validators.required
       ]]
     })
   }
@@ -70,8 +90,9 @@ export class HardwareEditComponent implements OnInit {
         let id = this.actRoute.snapshot.paramMap.get('id');
         this.hardwareApiService.updateHardware(id, this.editForm.value)
           .subscribe(res => {
-            this.router.navigateByUrl('/list-hardware');
+            //this.router.navigateByUrl('/list-hardware');
             console.log('Content updated successfully!')
+            console.log(this.editForm.value)
           }, (error) => {
             console.log(error)
           })
