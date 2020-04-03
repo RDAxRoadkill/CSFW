@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HardwareApiService } from '../../service/hardware-api.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class HardwareListComponent implements OnInit {
 
   Hardware: any = [];
 
-  constructor(private hardwareApiService: HardwareApiService) { 
+  constructor(private hardwareApiService: HardwareApiService, private router: Router) { 
     this.readHardware();
   }
 
@@ -28,7 +29,7 @@ export class HardwareListComponent implements OnInit {
   removeHardware(hardware, index) {
     if(window.confirm('Are you sure?')) {
         this.hardwareApiService.deleteHardware(hardware._id).subscribe((data) => {
-          window.location.reload();
+          this.router.navigateByUrl('/list-hardware');
         }
       )    
     }

@@ -21,6 +21,10 @@ import { SubscriptionListComponent } from './subscription/subscription-list/subs
 //User components
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
+//Client components
+import { ClientListComponent } from './clients/client-list/client-list.component';
+import { ClientCreateComponent } from './clients/client-create/client-create.component';
+import { ClientEditComponent } from './clients/client-edit/client-edit.component';
 //Helpers
 import { Guard } from './_helpers/guard';
 
@@ -45,6 +49,10 @@ const routes: Routes = [
   //User routes
   { path: 'list-user', component: UserListComponent},
   { path: 'edit-user/:id', component: UserEditComponent, canActivate: [Guard]}, //TODO: Upgrade to only allow specific user to edit their details
+  //Client routes
+  { path: 'list-client', component: ClientListComponent},
+  { path: 'create-client', component: ClientCreateComponent, canActivate: [Guard] },
+  { path: 'edit-client/:id', component: ClientEditComponent, canActivate: [Guard] },
   //CatchAll
   { path: '**', redirectTo: '/' }
 ];

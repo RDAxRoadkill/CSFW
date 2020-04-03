@@ -90,9 +90,7 @@ export class HardwareEditComponent implements OnInit {
         let id = this.actRoute.snapshot.paramMap.get('id');
         this.hardwareApiService.updateHardware(id, this.editForm.value)
           .subscribe(res => {
-            //this.router.navigateByUrl('/list-hardware');
-            console.log('Content updated successfully!')
-            console.log(this.editForm.value)
+            this.router.navigateByUrl('/list-hardware');
           }, (error) => {
             console.log(error)
           })
