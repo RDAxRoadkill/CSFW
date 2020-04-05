@@ -9,7 +9,7 @@ import { Subscription } from '../../model/subscription';
 })
 export class SubscriptionListComponent {
 
-  Subscription: Subscription;
+  Subscription: any = [];
 
   constructor(private subscriptionService: SubscriptionService) { 
     this.readSubscription();
@@ -18,6 +18,7 @@ export class SubscriptionListComponent {
   readSubscription(){
     this.subscriptionService.getSubscriptions().subscribe((data:Subscription) => {
       this.Subscription = data;
+      console.log(data);
     })
   }
 

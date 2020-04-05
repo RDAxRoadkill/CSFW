@@ -45,7 +45,7 @@ export class HardwareEditComponent implements OnInit {
         Name: data['Name'],
         ClientCapacity: data['ClientCapacity'],
         ClientsSupported: data['ClientsSupported'],
-        Specifications: ['']
+        Specifications: ['Specifications']
       });
     });
 

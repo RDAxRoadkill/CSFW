@@ -3,6 +3,8 @@ import { Subscription } from '../../model/subscription';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators  } from "@angular/forms";
 import { SubscriptionService } from '../../service/subscription.service';
+import { HardwareApiService } from '../../service/hardware-api.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-subscription-edit',
@@ -13,12 +15,14 @@ export class SubscriptionEditComponent implements OnInit {
   submitted = false;
   editSubForm: FormGroup;
   subData: Subscription[];
+  Hardwares: any = [];
 
   constructor(
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private subscriptionService: SubscriptionService,
-    private router: Router
+    private router: Router,
+    private hardwareService: HardwareApiService
   ) { 
     this.updateSubscription();
   }
@@ -27,6 +31,7 @@ export class SubscriptionEditComponent implements OnInit {
     this.updateSubscription();
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getSubscription(id);
+    this.getHardware();
   }
 
   // Getter to access form control
@@ -39,8 +44,20 @@ export class SubscriptionEditComponent implements OnInit {
       console.log(data)
       this.editSubForm.setValue({
         Name: data['Name'],
-        Costs: data['Costs']
+        Costs: data['Costs'],
+        Hardwares: ['']
       })
+    });
+
+    of(this.getHardware()).subscribe(Hardwares => {
+      console.log(Hardwares);
+      this.Hardwares = Hardwares;
+    })
+  }
+
+  getHardware(){
+    this.hardwareService.getHardwares().subscribe((data) => {
+      this.Hardwares = data;
     })
   }
 
@@ -53,6 +70,9 @@ export class SubscriptionEditComponent implements OnInit {
       Costs: ['', [
         Validators.required,
         Validators.pattern("^[0-9]*$")
+      ]],
+      Hardwares: ['', [
+        Validators.required
       ]]
     })
   }
