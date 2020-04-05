@@ -14,6 +14,9 @@
               <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.required">
                 Name is required.
               </div>
+              <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.pattern">
+                Enter letters Only
+              </div>
             </div>
             <div class="form-group">
               <label for="Costs">Costs</label>
@@ -24,6 +27,15 @@
               <div class="invalid-feedback" *ngIf="submitted && myForm.Costs.errors?.pattern">
                 Enter numbers only
               </div>
+            </div>
+
+            <div class="form-group">
+              <label for="Support">Hardware</label>
+              <select formControlName="Hardwares" id="Hardwares" class="js-example-basic-multiple" name="Hardwares[]" multiple="multiple" size="10">
+                <option *ngFor="let hardware of Hardwares; let i = index" [value]="hardware._id">
+                  {{hardware.Name}}
+                </option>
+              </select>
             </div>
  
             <div class="form-group">

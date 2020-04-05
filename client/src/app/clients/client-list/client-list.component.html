@@ -1,0 +1,36 @@
+<div class="container">
+    <!-- No data message -->
+    <p *ngIf="Client.length <= 0" class="no-data text-center">There are no clients added yet!</p>
+  
+    <table class="table table-bordered" *ngIf="Client.length > 0">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Name (Username)</th>
+          <th scope="col">Firstname</th>
+          <th scope="col">Lastname</th>
+          <th scope="col">Subscriptions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of Client; let i = index">
+          <td>{{client.Name}}</td>
+          <td>{{client.Firstname}}</td>
+          <td>{{client.Lastname}}</td>
+          <td>
+            <ul *ngFor="let subs of client.Subscriptions; let i = index">
+              <li>{{subs.Name}}</li>
+              <li>{{subs.Costs}}</li>
+            </ul>
+          </td>
+          <td class="text-center edit-block">
+            <span class="edit" [routerLink]="['/edit-client/', client._id]">
+              <button type="button" class="btn btn-success btn-sm">Edit</button>
+            </span>
+            <span class="delete" (click)="removeClient(client, i)">
+              <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

@@ -14,6 +14,12 @@
               <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.required">
                 Name is required.
               </div>
+              <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.pattern">
+                Enter letters only
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.minlength">
+                  Name must be 2 characters long
+              </div>
             </div>
             <div class="form-group">
               <label for="Type">Type</label>
@@ -21,30 +27,25 @@
               <div class="invalid-feedback" *ngIf="submitted && myForm.Type.errors?.required">
                 Enter the Type
               </div>
-              <div class="invalid-feedback" *ngIf="submitted && myForm.Type.errors?.pattern">
-                Enter Type only
-              </div>
             </div>
  
             <div class="form-group">
-              <label for="Support">Amount</label>
-              <input class="form-control" type="text" formControlName="Amount">
-              <div class="invalid-feedback" *ngIf="submitted && myForm.Amount.errors?.required">
-                Enter current number of Amount
+              <label for="Amount">Amount</label>
+              <input class="form-control" type="number" min="1" formControlName="Amount">
+              <!-- error  -->
+              <div class="invalid-feedback" *ngIf="submitted && myForm.Amount.errors?.required" >
+                  Amount is required
               </div>
               <div class="invalid-feedback" *ngIf="submitted && myForm.Amount.errors?.pattern">
-                Enter Amount Only
+                  Enter numbers only
               </div>
-            </div>
+          </div>
 
             <div class="form-group">
                 <label for="Support">AmountType</label>
                 <input class="form-control" type="text" formControlName="AmountType">
                 <div class="invalid-feedback" *ngIf="submitted && myForm.AmountType.errors?.required">
-                  Enter current number of AmountType
-                </div>
-                <div class="invalid-feedback" *ngIf="submitted && myForm.AmountType.errors?.pattern">
-                  Enter AmountType Only
+                  Enter a AmountType
                 </div>
               </div>
  

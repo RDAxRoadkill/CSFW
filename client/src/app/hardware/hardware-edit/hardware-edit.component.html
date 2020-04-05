@@ -1,3 +1,8 @@
+<style>
+  .invalid-feedback {
+    display: block !important;
+  }
+</style>
 <div class="row justify-content-center">
     <div class="col-md-4 register-hardware">
       <!-- form card register -->
@@ -11,15 +16,22 @@
             <div class="form-group">
               <label for="Name">Name</label>
               <input class="form-control" type="text" formControlName="Name">
-              <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.required">
-                Name is required.
-              </div>
+                <!-- error -->
+                <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.required">
+                  Name is required
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.pattern">
+                  Enter letters only
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && myForm.Name.errors?.minlength">
+                  Name must be 2 characters long
+                </div>
             </div>
             <div class="form-group">
               <label for="Capacity">Client Capacity</label>
               <input class="form-control" type="text" formControlName="ClientCapacity">
               <div class="invalid-feedback" *ngIf="submitted && myForm.ClientCapacity.errors?.required">
-                Enter the client capacaity
+                Please enter a client capacity
               </div>
               <div class="invalid-feedback" *ngIf="submitted && myForm.ClientCapacity.errors?.pattern">
                 Enter numbers only
@@ -30,13 +42,21 @@
               <label for="Support">Clients Supported</label>
               <input class="form-control" type="text" formControlName="ClientsSupported">
               <div class="invalid-feedback" *ngIf="submitted && myForm.ClientsSupported.errors?.required">
-                Enter current number of clients supported
+                Please enter the current number of clients using the service
               </div>
               <div class="invalid-feedback" *ngIf="submitted && myForm.ClientsSupported.errors?.pattern">
                 Enter Numbers Only
               </div>
             </div>
- 
+
+            <div class="form-group">
+              <label for="Support">Specifications</label>
+              <select formControlName="Specifications" id="Specifications" class="js-example-basic-multiple" name="Specifications[]" multiple="multiple" size="10">
+                <option *ngFor="let spec of Specifications; let i = index" [value]="spec._id">
+                  {{spec.Name}}
+                </option>
+              </select>
+            </div>
             <div class="form-group">
               <button class="btn btn-success btn-lg btn-block" type="submit">Update</button>
             </div>
@@ -45,3 +65,8 @@
       </div><!-- form  -->
     </div>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('.js-example-basic-multiple').select2();
+    });
+  </script>

@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators  } from "@angular/forms";
 import { HardwareApiService } from '../../service/hardware-api.service';
 
+import { SpecService } from '../../service/spec.service';
+import { of } from 'rxjs';
+
 @Component({
   selector: 'app-hardware-edit',
   templateUrl: './hardware-edit.component.html',
@@ -13,23 +16,23 @@ export class HardwareEditComponent implements OnInit {
   submitted = false;
   editForm: FormGroup;
   hardwareData: Hardware[];
+  Specifications: any = [];
 
   constructor(
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private hardwareApiService: HardwareApiService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private specService: SpecService
+  ) {
+    this.updateHardware();
+   }
 
   ngOnInit() {
     this.updateHardware();
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getHardware(id);
-    this.editForm = this.fb.group({
-      Name: ['', [Validators.required]],
-      ClientCapacity: [''],
-      ClientsSupported: ['']
-    })
+    this.getSpec();
   }
   // Getter to access form control
   get myForm(){
@@ -38,38 +41,56 @@ export class HardwareEditComponent implements OnInit {
 
   getHardware(id) {
     this.hardwareApiService.getHardware(id).subscribe(data => {
-      console.log(data)
       this.editForm.setValue({
         Name: data['Name'],
         ClientCapacity: data['ClientCapacity'],
         ClientsSupported: data['ClientsSupported'],
+        Specifications: ['Specifications']
       });
     });
+
+    of(this.getSpec()).subscribe(Specifications => {
+      this.Specifications = Specifications
+    });
+  }
+
+  getSpec() {
+    this.specService.getSpecs().subscribe((data) => {
+      this.Specifications = data;
+    })
   }
 
   updateHardware() {
     this.editForm = this.fb.group({
-      Name: ['', [Validators.required]],
-      //ClientCapacity: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      ClientCapacity: [''],
-      ClientsSupported: [''],
+      Name: ['', [
+        Validators.required, 
+        Validators.minLength(2),
+        Validators.pattern('^[a-zA-Z]+$')
+      ]],
+      ClientCapacity: ['', [
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
+      ]],
+      ClientsSupported: ['', [
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
+      ]],
+      Specifications: ['', [
+        Validators.required
+      ]]
     })
   }
 
   onSubmit() {
-    console.log("Submitted")
     this.submitted = true;
     if (!this.editForm.valid) {
       return false;
-      //TODO: Send back feedback on false data
-      window.location.reload();
     } else {
       if (window.confirm('Are you sure?')) {
         let id = this.actRoute.snapshot.paramMap.get('id');
         this.hardwareApiService.updateHardware(id, this.editForm.value)
           .subscribe(res => {
             this.router.navigateByUrl('/list-hardware');
-            console.log('Content updated successfully!')
           }, (error) => {
             console.log(error)
           })

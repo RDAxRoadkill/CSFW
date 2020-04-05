@@ -1,11 +1,7 @@
-<style>
-li.nav-item {
-    list-style-type: none;
-}
-</style>
+
 <div class="navbar-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a routerLink="">
+      <a routerLink="/">
         <h4 class="title">{{title}} | </h4>
       </a>   
       <li class="nav-item">
@@ -13,10 +9,28 @@ li.nav-item {
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Clients
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="nav-link" routerLink="/list-client">List Clients</a>
+          <a class="nav-link" routerLink="/create-client">Add Client </a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Subscriptions
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="nav-link" routerLink="/list-subscription">List Subscriptions</a>
+          <a class="nav-link" routerLink="/create-subscription">Add Subscription </a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Hardware
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="nav-link" routerLink="/list-hardware">Hardware List</a>
+          <a class="nav-link" routerLink="/list-hardware">List Hardware</a>
           <a class="nav-link" routerLink="/create-hardware">Add Hardware</a>
         </div>
       </li>
@@ -25,17 +39,8 @@ li.nav-item {
           Specifications
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="nav-link" routerLink="/list-spec">Specification List</a>
+          <a class="nav-link" routerLink="/list-spec">List Specifications</a>
           <a class="nav-link" routerLink="/create-spec">Add Specification </a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Subscriptions
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="nav-link" routerLink="/list-subscription">List Subscription</a>
-          <a class="nav-link" routerLink="/create-subscription">Add Subscription </a>
         </div>
       </li>
       <li class="nav-item dropdown">

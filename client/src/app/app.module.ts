@@ -31,7 +31,10 @@ import { SubscriptionCreateComponent } from './subscription/subscription-create/
 import { SubscriptionEditComponent } from './subscription/subscription-edit/subscription-edit.component';
 import { SubscriptionListComponent } from './subscription/subscription-list/subscription-list.component';
 import { UserListComponent } from './user/user-list/user-list.component';
-import { UserEditComponent } from './user/user-edit/user-edit.component'
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { ClientListComponent } from './clients/client-list/client-list.component';
+import { ClientCreateComponent } from './clients/client-create/client-create.component';
+import { ClientEditComponent } from './clients/client-edit/client-edit.component'
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { UserEditComponent } from './user/user-edit/user-edit.component'
     SubscriptionEditComponent,
     SubscriptionListComponent,
     UserListComponent,
-    UserEditComponent
+    UserEditComponent,
+    ClientListComponent,
+    ClientCreateComponent,
+    ClientEditComponent
   ],
   imports: [
     BrowserModule,

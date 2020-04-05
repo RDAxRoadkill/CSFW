@@ -8,28 +8,26 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 
-export class HardwareApiService {
+export class ClientService {
 
-  baseUri:string = environment.serverurl + "/api/hardware";
+  baseUri:string = environment.serverurl + "/api/clients";
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
 
-  // Create
-  createHardware(data): Observable<any> {
-      const url = `${this.baseUri}/create`;
-      return this.http.post(url, data)
-        .pipe(
-          catchError(this.errorMgmt)
-        )
+  //Create
+  createClient(data): Observable<any> {
+    const url = `${this.baseUri}/create`;
+    return this.http.post(url, data)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
   }
-  
-  // Get all
-  getHardwares() {
+  //Index
+  getClients() {
     return this.http.get(`${this.baseUri}`);
   }
-
-  //Get one
-  getHardware(id): Observable<any> {
+  //Read
+  getClient(id): Observable<any> {
     let url = `${this.baseUri}/${id}`;
     return this.http.get(url, {headers: this.headers}).pipe(
       map((res: Response) => {
@@ -39,16 +37,17 @@ export class HardwareApiService {
     )
   }
   //Update
-  updateHardware(id, data): Observable<any> {
+  updateClient(id, data): Observable<any> {
+    console.log("Updoot client called")
     console.log(data);
     const url = `${this.baseUri}/${id}`;
     return this.http.put(url, data, { headers: this.headers }).pipe(
       catchError(this.errorMgmt)
     )
   }
-
-  // Delete
-  deleteHardware(id): Observable<any> {
+  //Delete
+  deleteClient(id): Observable<any> {
+    console.log("Delete client called")
     let url = `${this.baseUri}/${id}`;
     return this.http.delete(url, { headers: this.headers }).pipe(
       catchError(this.errorMgmt)

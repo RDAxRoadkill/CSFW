@@ -3,6 +3,8 @@ import { Subscription } from '../../model/subscription';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators  } from "@angular/forms";
 import { SubscriptionService } from '../../service/subscription.service';
+import { HardwareApiService } from '../../service/hardware-api.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-subscription-edit',
@@ -13,22 +15,23 @@ export class SubscriptionEditComponent implements OnInit {
   submitted = false;
   editSubForm: FormGroup;
   subData: Subscription[];
+  Hardwares: any = [];
 
   constructor(
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private subscriptionService: SubscriptionService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private hardwareService: HardwareApiService
+  ) { 
+    this.updateSubscription();
+  }
 
   ngOnInit() {
     this.updateSubscription();
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getSubscription(id);
-    this.editSubForm = this.fb.group({
-      Name: ['', [Validators.required]],
-      Costs: [''],
-    })
+    this.getHardware();
   }
 
   // Getter to access form control
@@ -38,28 +41,45 @@ export class SubscriptionEditComponent implements OnInit {
 
   getSubscription(id){
     this.subscriptionService.getSubscription(id).subscribe(data =>{
-      console.log(data)
       this.editSubForm.setValue({
         Name: data['Name'],
-        Costs: data['Costs']
+        Costs: data['Costs'],
+        Hardwares: ['']
       })
+    });
+
+    of(this.getHardware()).subscribe(Hardwares => {
+      console.log(Hardwares);
+      this.Hardwares = Hardwares;
+    })
+  }
+
+  getHardware(){
+    this.hardwareService.getHardwares().subscribe((data) => {
+      this.Hardwares = data;
     })
   }
 
   updateSubscription(){
     this.editSubForm = this.fb.group({
-      Name: ['', [Validators.required]],
-      Costs: ['']
+      Name: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z]+$')
+      ]],
+      Costs: ['', [
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
+      ]],
+      Hardwares: ['', [
+        Validators.required
+      ]]
     })
   }
 
   onSubmit() {
-    console.log("Submitted")
     this.submitted = true;
     if (!this.editSubForm.valid) {
       return false;
-      //TODO: Send back feedback on false data
-      window.location.reload();
     } else {
       if (window.confirm('Are you sure?')) {
         let id = this.actRoute.snapshot.paramMap.get('id');

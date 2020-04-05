@@ -7,12 +7,18 @@
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Costs</th>
+          <th scope="col">Hardware</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let sub of Subscription; let i = index">
           <td>{{sub.Name}}</td>
           <td>{{sub.Costs}}</td>
+          <td>
+            <ul *ngFor="let hardware of sub.Hardwares; let i = index">
+              <li>{{hardware.Name}}</li>
+            </ul>
+          </td>
           <td class="text-center edit-block">
             <span class="edit" [routerLink]="['/edit-subscription/', sub._id]">
               <button type="button" class="btn btn-success btn-sm">Edit</button>
