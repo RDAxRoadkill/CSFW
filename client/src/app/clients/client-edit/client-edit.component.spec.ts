@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterModule } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientEditComponent } from './client-edit.component';
 
 describe('ClientEditComponent', () => {
@@ -8,6 +10,7 @@ describe('ClientEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ FormsModule, ReactiveFormsModule, RouterModule, HttpClientTestingModule ],
       declarations: [ ClientEditComponent ]
     })
     .compileComponents();
