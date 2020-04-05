@@ -11,16 +11,16 @@ stages:
   - test
   - deploy
 
-unittests:
-  image: markhobson/node-chrome:latest
-  stage: test
-  variables:
-    NODE_ENV: development
-  before_script:
-    - npm install
-  script: 
-    - npm run test
-    - npm run sonar
+#unittests:
+#  image: markhobson/node-chrome:latest
+#  stage: test
+#  variables:
+#    NODE_ENV: development
+#  before_script:
+#    - npm install
+#  script: 
+#    - npm run test
+#    - npm run sonar
 
 #
 # Deploy to Heroku
