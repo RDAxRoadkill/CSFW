@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Guard } from './guard';
+import { Guard } from './guard'
 
 describe('Guard', () => {
   let component: Guard;
@@ -19,7 +19,7 @@ describe('Guard', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create guard', () => {
     expect(component).toBeTruthy();
   });
 });

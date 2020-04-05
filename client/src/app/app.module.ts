@@ -70,7 +70,7 @@ import { ClientEditComponent } from './clients/client-edit/client-edit.component
    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
     HardwareApiService,
     SpecService,
-    SubscriptionService
+    SubscriptionService,
   ],
   bootstrap: [AppComponent]
 })

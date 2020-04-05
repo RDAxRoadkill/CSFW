@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterModule } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UserListComponent } from './user-list.component';
 
 describe('UserListComponent', () => {
@@ -8,6 +9,7 @@ describe('UserListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterModule, HttpClientTestingModule ],
       declarations: [ UserListComponent ]
     })
     .compileComponents();

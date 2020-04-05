@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterModule } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SubscriptionCreateComponent } from './subscription-create.component';
 
 describe('SubscriptionCreateComponent', () => {
@@ -8,6 +9,7 @@ describe('SubscriptionCreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterModule, HttpClientTestingModule ],
       declarations: [ SubscriptionCreateComponent ]
     })
     .compileComponents();

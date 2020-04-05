@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterModule, ActivatedRoute, Router } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormBuilder , FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpecEditComponent } from './spec-edit.component';
 
 describe('SpecEditComponent', () => {
@@ -8,7 +10,8 @@ describe('SpecEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SpecEditComponent ]
+      imports: [ FormsModule, ReactiveFormsModule, RouterModule, HttpClientTestingModule, ActivatedRoute, Router],
+      declarations: [ SpecEditComponent]
     })
     .compileComponents();
   }));

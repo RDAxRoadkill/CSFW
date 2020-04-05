@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterModule } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HardwareEditComponent } from './hardware-edit.component';
 
 describe('HardwareEditComponent', () => {
@@ -8,6 +10,7 @@ describe('HardwareEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ FormsModule, ReactiveFormsModule, RouterModule, HttpClientTestingModule ],
       declarations: [ HardwareEditComponent ]
     })
     .compileComponents();
