@@ -26,7 +26,7 @@ export class ClientCreateComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.subSetup();
+    this.formSetup();
   }
 
   mainForm() {
@@ -50,7 +50,7 @@ export class ClientCreateComponent implements OnInit {
     })
   }
 
-  subSetup(){
+  formSetup(){
     this.clientForm.setValue({
       Name: [''],
       Firstname: [''],

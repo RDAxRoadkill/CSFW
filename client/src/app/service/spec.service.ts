@@ -29,7 +29,6 @@ export class SpecService {
 
   //Get one
   getSpec(id): Observable<any> {
-  console.log("Get hardware called")
   let url = `${this.baseUri}/${id}`;
   return this.http.get(url, {headers: this.headers}).pipe(
     map((res: Response) => {
@@ -40,7 +39,6 @@ export class SpecService {
   }
   //Update
   updateSpec(id, data): Observable<any> {
-  console.log("Updoot hardware called")
   const url = `${this.baseUri}/${id}`;
   return this.http.put(url, data, { headers: this.headers }).pipe(
     catchError(this.errorMgmt)
@@ -49,7 +47,6 @@ export class SpecService {
 
   // Delete
   deleteSpec(id): Observable<any> {
-  console.log("Delete hardware called")
   let url = `${this.baseUri}/${id}`;
   return this.http.delete(url, { headers: this.headers }).pipe(
     catchError(this.errorMgmt)

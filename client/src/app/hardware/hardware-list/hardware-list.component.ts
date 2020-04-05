@@ -29,7 +29,7 @@ export class HardwareListComponent implements OnInit {
   removeHardware(hardware, index) {
     if(window.confirm('Are you sure?')) {
         this.hardwareApiService.deleteHardware(hardware._id).subscribe((data) => {
-          this.router.navigateByUrl('/list-hardware');
+          window.location.reload();
         }
       )    
     }
