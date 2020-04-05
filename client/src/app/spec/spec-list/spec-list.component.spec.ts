@@ -1,5 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { RouterTestingModule } from '@angular/router/testing';
+
 import { SpecListComponent } from './spec-list.component';
 
 describe('SpecListComponent', () => {
@@ -8,7 +12,8 @@ describe('SpecListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SpecListComponent ]
+      declarations: [ SpecListComponent ],
+      imports: [FormsModule, ReactiveFormsModule, RouterTestingModule]
     })
     .compileComponents();
   }));
