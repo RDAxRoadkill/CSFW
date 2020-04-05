@@ -41,7 +41,6 @@ export class SubscriptionEditComponent implements OnInit {
 
   getSubscription(id){
     this.subscriptionService.getSubscription(id).subscribe(data =>{
-      console.log(data)
       this.editSubForm.setValue({
         Name: data['Name'],
         Costs: data['Costs'],

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubscriptionService } from '../../service/subscription.service';
+import { HardwareApiService } from '../../service/hardware-api.service'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-subscription-create',
@@ -11,15 +14,37 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class SubscriptionCreateComponent implements OnInit {
   submitted = false;
   subscriptionForm: FormGroup;
+  Hardwares: any = [];
+
   constructor(
     public fb: FormBuilder,
     private router: Router,
-    private SubscriptionService: SubscriptionService
+    private SubscriptionService: SubscriptionService,
+    private HardwareService: HardwareApiService
   ) { 
     this.mainForm();
   }
 
   ngOnInit() {
+    this.formSetup();
+  }
+
+  formSetup(){
+    this.subscriptionForm.setValue({
+      Name: [''],
+      Costs: [''],
+      Hardwares: ['']
+    })
+
+    of(this.getHardware()).subscribe(Hardwares => {
+      this.Hardwares = Hardwares
+    });
+  }
+
+  getHardware(){
+    this.HardwareService.getHardwares().subscribe((data) => {
+      this.Hardwares = data;
+    })
   }
 
   mainForm(){
@@ -31,7 +56,8 @@ export class SubscriptionCreateComponent implements OnInit {
       Costs: ['', [
         Validators.required,
         Validators.pattern("^[0-9]*$")
-      ]]
+      ]],
+      Hardwares: ['']
     })
   }
 
