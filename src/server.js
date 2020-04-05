@@ -1,17 +1,47 @@
-//TODO: Update with content over at https://gitlab.com/avans-informatica-breda/programmeren/clientside-frameworks/angular-gitlab-heroku/blob/master/src/server.js
-//Install express server
-const express = require('express');
-const path = require('path');
+const express = require('express')
+const path = require('path')
+const http = require('http')
+const compression = require('compression')
 
-const app = express();
+const app = express()
 
-// Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/'));
+// Compress static assets to enhance performance.
+// Decrease the download size of your app through gzip compression:
+app.use(compression())
 
-app.get('/*', function(req,res) {
-    
-res.sendFile(path.join(__dirname+'/index.html'));
-});
+//
+// appname is the name of the "defaultProject" value that was set in the angular.json file.
+// When built in production mode using 'ng build --prod', a ./dist/{appname} folder is
+// created, containing the generated application. The appname points to that folder.
+//
+// Replace the name below to match your own "defaultProject" value!
+//
+const appname = 'client'
 
-// Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+// Set express options
+const options = {
+  setHeaders: (res, path, stat) => {
+    res.set(
+      'Content-Security-Policy',
+      "default-src 'self' https://csfw-client.herokuapp.com/; script-src 'self' https://csfw-client.herokuapp.com/; connect-src https://csfw-client.herokuapp.com/'self'; img-src 'self' www.google.com; style-src 'self' 'unsafe-inline';"
+    )
+  }
+}
+
+// Point static path to dist
+app.use(express.static(path.join(__dirname, '..', 'dist', appname), options))
+
+// Catch all routes and return the index file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'dist', appname, 'index.html'))
+})
+
+// Get port from environment and store in Express.
+const port = process.env.PORT || '4200'
+app.set('port', port)
+// Create HTTP server.
+const server = http.createServer(app)
+// Listen on provided port, on all network interfaces.
+server.listen(port, () => {
+  console.log(`Angular app \'${appname}\' running on port ${port}`)
+})
