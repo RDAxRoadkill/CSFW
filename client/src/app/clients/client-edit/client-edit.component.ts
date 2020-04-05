@@ -88,7 +88,7 @@ export class ClientEditComponent implements OnInit {
         let id = this.actRoute.snapshot.paramMap.get('id');
         this.clientService.updateClient(id, this.editForm.value)
           .subscribe(res => {
-            this.router.navigateByUrl('/list-clients');
+            this.router.navigateByUrl('/list-client');
           }, (error) => {
             console.log(error)
           })
