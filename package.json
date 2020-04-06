@@ -4,11 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "node src/server.js",
-    "build": "ng build",
+    "build": "ng build --prod --aot",
     "test": "ng test --progress false --watch false --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod",
+    "postinstall": "ng build --prod --aot",
     "sonar": "sonar-scanner"
   },
   "private": true,
