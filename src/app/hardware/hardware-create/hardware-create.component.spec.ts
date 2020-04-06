@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterModule, ActivatedRoute } from '@angular/router';
+import { HttpClientTestingModule  } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HardwareCreateComponent } from './hardware-create.component';
 
@@ -10,7 +11,7 @@ describe('HardwareCreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule, ReactiveFormsModule, RouterModule, HttpClientTestingModule ],
+      imports: [FormsModule, ReactiveFormsModule, RouterModule, HttpClientTestingModule, RouterTestingModule  ],
       declarations: [ HardwareCreateComponent ]
     })
     .compileComponents();

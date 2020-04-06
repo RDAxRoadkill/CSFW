@@ -59,6 +59,7 @@ import { ClientEditComponent } from './clients/client-edit/client-edit.component
     ClientEditComponent
   ],
   imports: [
+    RouterModule.forRoot([]),
     BrowserModule,
     RouterModule,
     AppRoutingModule,
