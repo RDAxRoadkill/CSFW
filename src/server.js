@@ -29,7 +29,7 @@ const options = {
 }
 
 // Point static path to dist
-app.use(express.static(path.join('/dist/', appname), options))
+app.use(express.static(path.join(__dirname,  '/dist/', appname), options))
 
 // Catch all routes and return the index file
 app.get('*', (req, res) => {
