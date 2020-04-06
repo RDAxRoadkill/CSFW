@@ -29,11 +29,11 @@ const options = {
 }
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, '..', 'dist', appname), options))
+app.use(express.static(path.join(__dirname,  'dist/', appname), options))
 
 // Catch all routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'dist', appname, 'index.html'))
+  res.sendFile(path.join(__dirname, 'dist/', appname, 'index.html'))
 })
 
 // Get port from environment and store in Express.
@@ -43,6 +43,6 @@ app.set('port', port)
 const server = http.createServer(app)
 // Listen on provided port, on all network interfaces.
 server.listen(port, () => {
-  console.log("serving app" + appname + "Using the following" + __dirname + '..' + 'dist' + appname)
+  console.log("serving app" + appname + "Using the following" + __dirname  + 'dist' + appname)
   console.log(`Angular app \'${appname}\' running on port ${port}`)
 })
