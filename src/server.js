@@ -23,7 +23,7 @@ const options = {
   setHeaders: (res, path, stat) => {
     res.set(
       'Content-Security-Policy',
-      "default-src 'self' https://csfw-client.herokuapp.com/; script-src 'self' https://csfw-client.herokuapp.com/; connect-src https://csfw-client.herokuapp.com/'self'; img-src 'self' www.google.com; style-src 'self' 'unsafe-inline';"
+      "default-src 'self' webmanagement-client.herokuapp.com; script-src 'self' webmanagement-client.herokuapp.com; connect-src webmanagement-client.herokuapp.com'self'; img-src 'self' www.google.com; style-src 'self' 'unsafe-inline';"
     )
   }
 }
@@ -43,5 +43,6 @@ app.set('port', port)
 const server = http.createServer(app)
 // Listen on provided port, on all network interfaces.
 server.listen(port, () => {
+  console.log("serving app" + appname + "Using the following" + __dirname + '..' + 'dist' + appname)
   console.log(`Angular app \'${appname}\' running on port ${port}`)
 })
