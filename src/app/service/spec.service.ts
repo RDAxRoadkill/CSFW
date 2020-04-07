@@ -24,7 +24,7 @@ export class SpecService {
 
   // Get all
   getSpecs() {
-  return this.http.get(`${this.baseUri}`);
+    return this.http.get(`${this.baseUri}`);
   }
 
   //Get one
