@@ -10,3 +10,11 @@
 .invalid-feedback {
     display: block !important; /* Sccs makes these invisible. Required to use important unfortunatly */
 }
+
+li.nav-item a {
+    color: #FFFFFF !important;
+}
+
+.dropdown-menu.show {
+    background-color: #343a40!important;
+}

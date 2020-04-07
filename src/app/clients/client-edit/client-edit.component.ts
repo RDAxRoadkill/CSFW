@@ -47,10 +47,6 @@ export class ClientEditComponent implements OnInit {
         Subscriptions: ['']
       });
     });
-
-    of(this.getSubscription()).subscribe(Subcriptions => {
-      this.Subscriptions = Subcriptions;
-    });
   }
 
   getSubscription(){
