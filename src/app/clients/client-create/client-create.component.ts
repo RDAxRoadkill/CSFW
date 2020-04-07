@@ -57,10 +57,6 @@ export class ClientCreateComponent implements OnInit {
       Lastname: [''],
       Subscriptions: ['']
     })
-
-    of(this.getSubscription()).subscribe(Subscriptions => {
-      return this.Subscriptions = Subscriptions
-    });
   }
 
   getSubscription(){
