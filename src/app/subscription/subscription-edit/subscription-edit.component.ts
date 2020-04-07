@@ -46,11 +46,6 @@ export class SubscriptionEditComponent implements OnInit {
         Costs: data['Costs'],
         Hardwares: ['']
       })
-    });
-
-    of(this.getHardware()).subscribe(Hardwares => {
-      console.log(Hardwares);
-      this.Hardwares = Hardwares;
     })
   }
 

@@ -48,10 +48,6 @@ export class HardwareEditComponent implements OnInit {
         Specifications: ['Specifications']
       });
     });
-
-    of(this.getSpec()).subscribe(Specifications => {
-      this.Specifications = Specifications
-    });
   }
 
   getSpec() {
