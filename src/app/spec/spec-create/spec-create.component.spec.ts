@@ -4,15 +4,37 @@ import { HttpClientTestingModule  } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpecCreateComponent } from './spec-create.component';
+import { Observable } from 'rxjs';
+import { Specifications } from 'src/app/model/specifications';
+import { SpecService } from 'src/app/service/spec.service';
 
 describe('SpecCreateComponent', () => {
   let component: SpecCreateComponent;
   let fixture: ComponentFixture<SpecCreateComponent>;
 
+  class MockSpecService{
+    getSpecs(): Observable<Specifications[]> {
+      let spec: Specifications;
+      spec = {
+        Name: "Test",
+        Type: "Corsair",
+        AmountType: "GB",
+        Amount: 16
+      }
+
+      let specs = new Observable<Specifications[]>((observer)=> {
+        observer.next([spec, spec]);
+      })
+
+      return specs;
+    }
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule, RouterModule, HttpClientTestingModule, RouterTestingModule  ],
-      declarations: [ SpecCreateComponent ]
+      declarations: [ SpecCreateComponent ],
+      providers: [ { provide: SpecService, useValue: MockSpecService }]
     })
     .compileComponents();
   }));
@@ -26,4 +48,21 @@ describe('SpecCreateComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('form should be invalid', async(() => {
+    component.specForm.controls['name'].setValue('');
+    component.specForm.controls['type'].setValue('');
+    component.specForm.controls['amount'].setValue('');
+    component.specForm.controls['amountType'].setValue('');
+    expect(component.specForm.valid).toBeFalsy();
+  }));
+
+  it('form should be valid', async(() => {
+    component.specForm.controls['name'].setValue('Test');
+    component.specForm.controls['type'].setValue('Corsair');
+    component.specForm.controls['amount'].setValue('16');
+    component.specForm.controls['amountType'].setValue('GB');
+    expect(component.specForm.valid).toBeTruthy();
+  }));
+
 });

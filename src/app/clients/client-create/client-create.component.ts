@@ -59,7 +59,7 @@ export class ClientCreateComponent implements OnInit {
     })
 
     of(this.getSubscription()).subscribe(Subscriptions => {
-      this.Subscriptions = Subscriptions
+      return this.Subscriptions = Subscriptions
     });
   }
 
