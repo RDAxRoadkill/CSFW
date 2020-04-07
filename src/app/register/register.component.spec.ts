@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterModule, ActivatedRoute, Router } from '@angular/router';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormBuilder , FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, ActivatedRoute } from '@angular/router';
+import { HttpClientTestingModule  } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register.component';
 
 describe('RegisterComponent', () => {
@@ -14,10 +15,8 @@ describe('RegisterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule, ReactiveFormsModule, RouterModule, HttpClientTestingModule, ],
+      imports: [FormsModule, ReactiveFormsModule, RouterModule, HttpClientTestingModule, RouterTestingModule  ],
       declarations: [ RegisterComponent ],
-      providers: [ {provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }, {provide: ActivatedRoute, useValue: boi} ],
-      
     })
     .compileComponents();
   }));
