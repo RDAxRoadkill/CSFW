@@ -29,6 +29,7 @@ describe('SpecCreateComponent', () => {
       return specs;
     }
   }
+  let service: MockSpecService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -50,19 +51,33 @@ describe('SpecCreateComponent', () => {
   });
 
   it('form should be invalid', async(() => {
+    // Arrange
     component.specForm.controls['name'].setValue('');
     component.specForm.controls['type'].setValue('');
     component.specForm.controls['amount'].setValue('');
     component.specForm.controls['amountType'].setValue('');
+
+    // Assert
     expect(component.specForm.valid).toBeFalsy();
   }));
 
   it('form should be valid', async(() => {
+    //Arrange / Act
     component.specForm.controls['name'].setValue('Test');
     component.specForm.controls['type'].setValue('Corsair');
     component.specForm.controls['amount'].setValue('16');
     component.specForm.controls['amountType'].setValue('GB');
+
+    // Assert
     expect(component.specForm.valid).toBeTruthy();
   }));
+
+  it('should fail to submit', function() {
+    // Arrange
+    component.onSubmit();
+
+    //Assert
+    expect(false);
+  });
 
 });
